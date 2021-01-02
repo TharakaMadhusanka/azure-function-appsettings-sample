@@ -1,5 +1,4 @@
-﻿using AzureFunctionAppSettings;
-using Microsoft.Azure.Functions.Extensions.DependencyInjection;
+﻿using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.IO;
@@ -24,11 +23,8 @@ namespace AzureFunctionAppSettings
         public override void Configure(IFunctionsHostBuilder builder)
         {
             // Inject Settings as Options
-            builder.Services.AddOptions<ConfigurationOptions>()
-                    .Configure<IConfiguration>((settings, configuration) =>
-                    {
-                        configuration.GetSection("Configurations").Bind("Configurations", settings);
-                    });
+            builder.Services.AddOptions<AppSettingsConfigurationOptions>()
+                            .Configure<IConfiguration>((settings, configuration) => { configuration.Bind("Configurations", settings); });
         }
     }
 }

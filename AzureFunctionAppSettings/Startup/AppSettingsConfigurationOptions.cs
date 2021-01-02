@@ -1,6 +1,6 @@
 ﻿namespace AzureFunctionAppSettings
 {
-    public class ConfigurationOptions
+    public class AppSettingsConfigurationOptions
     {
         public string Environment { get; set; }
     }
